@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/idEdtClassNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Masukkan Nomor Ruangan" />
+
+    <EditText
+        android:id="@+id/idEdtBuilding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Masukkan Huruf Gedung" />
+
+    <EditText
+        android:id="@+id/idEdtCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Masukkan Kapasitas" />
+
+    <EditText
+        android:id="@+id/idEdtClassDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Masukkan Deskripsi Kelas" />
+
+    <Button
+        android:id="@+id/idBtnAddClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Tambahkan Kelas"
+        android:textAllCaps="false" />
+
+</LinearLayout>
