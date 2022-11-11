@@ -13,7 +13,7 @@ public class UpdateClassActivity extends AppCompatActivity {
 
     // variables for our edit text, button, strings and dbhandler class.
     private EditText classNameEdt, buildingEdt, capacityEdt, classDescriptionEdt;
-    private Button updateClassBtn;
+    private Button updateClassBtn,deleteClassBtn;
     private DBHandler dbHandler;
     String className, classDesc, capacity, building;
 
@@ -28,6 +28,7 @@ public class UpdateClassActivity extends AppCompatActivity {
         capacityEdt = findViewById(R.id.idEdtCapacity);
         classDescriptionEdt = findViewById(R.id.idEdtClassDescription);
         updateClassBtn = findViewById(R.id.idBtnUpdateClass);
+        deleteClassBtn = findViewById(R.id.idBtnDelete);
 
         // on below line we are initialing our dbhandler class.
         dbHandler = new DBHandler(UpdateClassActivity.this);
@@ -63,5 +64,17 @@ public class UpdateClassActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        // adding on click listener for delete button to delete our class.
+        deleteClassBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calling a method to delete our class.
+                dbHandler.deleteClass(className);
+                Toast.makeText(UpdateClassActivity.this, "Kelas Dihapus", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(UpdateClassActivity.this, ViewClasses.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
