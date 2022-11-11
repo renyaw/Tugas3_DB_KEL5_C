@@ -1,5 +1,6 @@
 package com.example.fsm_classroom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     // creating variables for our edittext, button and dbhandler
     private EditText classNoEdt, buildingEdt, capacityEdt, classDescriptionEdt;
-    private Button addClassBtn;
+    private Button addClassBtn,readClassBtn;
     private DBHandler dbHandler;
 
     @Override
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         capacityEdt = findViewById(R.id.idEdtCapacity);
         classDescriptionEdt = findViewById(R.id.idEdtClassDescription);
         addClassBtn = findViewById(R.id.idBtnAddClass);
+        readClassBtn= findViewById(R.id.idBtnReadClass);
 
         // creating a new dbhandler class
         // and passing our context to it.
@@ -60,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 buildingEdt.setText("");
                 capacityEdt.setText("");
                 classDescriptionEdt.setText("");
+            }
+        });
+
+
+        readClassBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // opening a new activity via a intent.
+                Intent i = new Intent(MainActivity.this, ViewClasses.class);
+                startActivity(i);
             }
         });
     }

@@ -2,8 +2,11 @@ package com.example.fsm_classroom;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper{
 
@@ -84,11 +87,38 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
+    // we have created a new method for reading all the courses.
+    public ArrayList<ClassModal> readClasses() {
+        // on below line we are creating a
+        // database for reading our database.
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // on below line we are creating a cursor with query to read data from database.
+        Cursor cursorClasses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        // on below line we are creating a new array list.
+        ArrayList<ClassModal> courseModalArrayList = new ArrayList<>();
+
+        // moving our cursor to first position.
+        if (cursorClasses.moveToFirst()) {
+            do {
+                // on below line we are adding the data from cursor to our array list.
+                courseModalArrayList.add(new ClassModal(cursorClasses.getString(1),
+                        cursorClasses.getString(4),
+                        cursorClasses.getString(2),
+                        cursorClasses.getString(3)));
+            } while (cursorClasses.moveToNext());
+            // moving our cursor to next.
+        }
+        // at last closing our cursor 
+        // and returning our array list.
+        cursorClasses.close();
+        return courseModalArrayList;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-
 }
