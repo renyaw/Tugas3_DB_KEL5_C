@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateClassActivity">
+
+    <!--Edit text to enter class name-->
+    <EditText
+        android:id="@+id/idEdtClassNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Class No" />
+
+    <!--edit text to display class tracks-->
+    <EditText
+        android:id="@+id/idEdtBuilding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Building" />
+
+    <!--edit text to enter class duration-->
+    <EditText
+        android:id="@+id/idEdtCapacity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Capacity" />
+
+
+    <!--edit text for class description-->
+    <EditText
+        android:id="@+id/idEdtClassDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="Enter Class Description" />
+
+    <!--button for updating our class-->
+    <Button
+        android:id="@+id/idBtnUpdateClass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Update Class"
+        android:textAllCaps="false" />
+
+</LinearLayout>

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // and passing our context to it.
         dbHandler = new DBHandler(MainActivity.this);
 
-        // below line is to add on click listener for our add course button.
+        // below line is to add on click listener for our add class button.
         addClassBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // on below line we are calling a method to add new
-                // course to sqlite data and pass all our values to it.
+                // class to sqlite data and pass all our values to it.
                 dbHandler.addNewClass(classNo, building, capacity, classDescription);
 
                 // after adding the data we are displaying a toast message.

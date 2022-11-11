@@ -1,6 +1,7 @@
 package com.example.fsm_classroom;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,25 @@ public class ClassRVAdapter extends RecyclerView.Adapter<ClassRVAdapter.ViewHold
         holder.classDescTV.setText(modal.getClassDescription());
         holder.classBuilding.setText(modal.getBuilding());
         holder.classCapacity.setText(modal.getCapacity());
+
+        // below line is to add on click listener for our recycler view item.
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // on below line we are calling an intent.
+                Intent i = new Intent(context, UpdateClassActivity.class);
+
+                // below we are passing all our values.
+                i.putExtra("name", modal.getClassNo());
+                i.putExtra("description", modal.getClassDescription());
+                i.putExtra("building", modal.getBuilding());
+                i.putExtra("capacity", modal.getCapacity());
+
+                // starting our activity.
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -63,4 +83,6 @@ public class ClassRVAdapter extends RecyclerView.Adapter<ClassRVAdapter.ViewHold
             classCapacity = itemView.findViewById(R.id.idTVClassCapacity);
         }
     }
+
+
 }

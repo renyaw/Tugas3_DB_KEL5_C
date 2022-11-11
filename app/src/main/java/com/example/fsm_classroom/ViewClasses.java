@@ -12,9 +12,9 @@ public class ViewClasses extends AppCompatActivity {
 
     // creating variables for our array list,
     // dbhandler, adapter and recycler view.
-    private ArrayList<ClassModal> courseModalArrayList;
+    private ArrayList<ClassModal> classModalArrayList;
     private DBHandler dbHandler;
-    private ClassRVAdapter courseRVAdapter;
+    private ClassRVAdapter classRVAdapter;
     private RecyclerView classesRV;
 
     @Override
@@ -23,15 +23,15 @@ public class ViewClasses extends AppCompatActivity {
         setContentView(R.layout.activity_view_class);
 
         // initializing our all variables.
-        courseModalArrayList = new ArrayList<>();
+        classModalArrayList = new ArrayList<>();
         dbHandler = new DBHandler(ViewClasses.this);
 
-        // getting our course array
+        // getting our class array
         // list from db handler class.
-        courseModalArrayList = dbHandler.readClasses();
+        classModalArrayList = dbHandler.readClasses();
 
         // on below line passing our array lost to our adapter class.
-        courseRVAdapter = new ClassRVAdapter(courseModalArrayList, ViewClasses.this);
+        classRVAdapter = new ClassRVAdapter(classModalArrayList, ViewClasses.this);
         classesRV = findViewById(R.id.idRVClasses);
 
         // setting layout manager for our recycler view.
@@ -39,6 +39,6 @@ public class ViewClasses extends AppCompatActivity {
         classesRV.setLayoutManager(linearLayoutManager);
 
         // setting our adapter to recycler view.
-        classesRV.setAdapter(courseRVAdapter);
+        classesRV.setAdapter(classRVAdapter);
     }
 }

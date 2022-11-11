@@ -23,16 +23,16 @@ public class DBHandler extends SQLiteOpenHelper{
     // below variable is for our id column.
     private static final String ID_COL = "id";
 
-    // below variable is for our course name column
+    // below variable is for our class name column
     private static final String NAME_COL = "nomor";
 
-    // below variable id for our course duration column.
+    // below variable id for our building column.
     private static final String BUILDING_COL = "gedung";
 
-    // below variable is for our course tracks column.
+    // below variable is for our capacity column.
     private static final String CAPACITY_COL = "kapasitas";
 
-    // below variable for our course description column.
+    // below variable for our class description column.
     private static final String DESCRIPTION_COL = "deskripsi";
 
     // creating a constructor for our database handler.
@@ -59,7 +59,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL(query);
     }
 
-    // this method is use to add new course to our sqlite database.
+    // this method is use to add new class to our sqlite database.
     public void addNewClass(String classNo, String building, String capacity, String classDescription) {
 
         // on below line we are creating a variable for
@@ -87,7 +87,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-    // we have created a new method for reading all the courses.
+    // we have created a new method for reading all the classs.
     public ArrayList<ClassModal> readClasses() {
         // on below line we are creating a
         // database for reading our database.
@@ -97,13 +97,13 @@ public class DBHandler extends SQLiteOpenHelper{
         Cursor cursorClasses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         // on below line we are creating a new array list.
-        ArrayList<ClassModal> courseModalArrayList = new ArrayList<>();
+        ArrayList<ClassModal> classModalArrayList = new ArrayList<>();
 
         // moving our cursor to first position.
         if (cursorClasses.moveToFirst()) {
             do {
                 // on below line we are adding the data from cursor to our array list.
-                courseModalArrayList.add(new ClassModal(cursorClasses.getString(1),
+                classModalArrayList.add(new ClassModal(cursorClasses.getString(1),
                         cursorClasses.getString(4),
                         cursorClasses.getString(2),
                         cursorClasses.getString(3)));
@@ -113,8 +113,30 @@ public class DBHandler extends SQLiteOpenHelper{
         // at last closing our cursor 
         // and returning our array list.
         cursorClasses.close();
-        return courseModalArrayList;
+        return classModalArrayList;
     }
+
+    // below is the method for updating our classs
+    public void updateClass(String originalClassName, String className,
+                             String building, String capacity, String classDescription) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        values.put(NAME_COL, className);
+        values.put(CAPACITY_COL, capacity);
+        values.put(DESCRIPTION_COL, classDescription);
+        values.put(BUILDING_COL, building);
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our class which is stored in original name variable.
+        db.update(TABLE_NAME, values, "nomor=?", new String[]{originalClassName});
+        db.close();
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // this method is called to check if the table exists already.
